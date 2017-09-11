@@ -67,21 +67,30 @@ function gotMedia(mediaStream) {
 var snap = document.querySelector('.snap');
 
 snap.onclick = function() {
-const img = document.querySelector('img');
-// ...
-imageCapture.takePhoto()
-  .then(blob => {
-    img.src = URL.createObjectURL(blob);
-    console.log('blob', blob);
-    var z = {};
-    console.log('img', img);
+// const img = document.querySelector('img');
+// // ...
+// imageCapture.takePhoto()
+//   .then(blob => {
+//     img.src = URL.createObjectURL(blob);
+//     console.log('blob', blob);
+//     var z = {};
+//     console.log('img', img);
   
      
 
-    img.onload = () => { URL.revokeObjectURL(this.src); }
+//     img.onload = () => { URL.revokeObjectURL(this.src); }
+//   })
+//   .catch(error => console.error('takePhoto() error:', error));
+// }
+const canvas = document.querySelector('canvas');
+// ...
+imageCapture.grabFrame()
+  .then(imageBitmap => {
+    canvas.width = imageBitmap.width;
+    canvas.height = imageBitmap.height;
+    canvas.getContext('2d').drawImage(imageBitmap, 0, 0);
   })
-  .catch(error => console.error('takePhoto() error:', error));
-}
+  .catch(error => console.error('grabFrame() error:', error));
   
 }
 
@@ -99,4 +108,5 @@ check.onclick = function() {
             $('.verdict').text("No");
         }
      });  
+}
 }
