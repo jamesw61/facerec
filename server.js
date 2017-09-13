@@ -13,9 +13,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
-app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.json({limit: '200mb'}));
 app.use(bodyParser.urlencoded({
-    limit: '50mb',
+    limit: '200mb',
     extended: true
   }));
 

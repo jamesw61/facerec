@@ -7,7 +7,19 @@
     <!-- <link rel="stylesheet" href="style.css" type="text/css" /> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
     <title>Face</title>
-    <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.1.1.js"></script> -->
+<!--     <script src="tracking-min.js"></script>
+    <script src="face-min.js"></script> -->
+    <!-- <script src="../node_modules/tracking/dat.gui/build/dat.gui.min.js"></script> -->
+    <!-- <script src="../node_modules/tracking/assets/stats.min.js"></script> -->
+<!--      <style>
+/*  video, canvas {
+    margin-left: 230px;
+    margin-top: 120px;
+    position: absolute;
+  }*/
+  </style> -->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 </head>
 
 <body>
@@ -29,34 +41,38 @@
                 <div class="card-panel teal">
                     <div class="camBtn white-text">
                         <button class="snap black-text">Take snapshot</button>
-                        
                     </div>
                 </div>
             </div>
         </div>
-            <div class="col s12 m5">
-                <div class="card-panel teal">
-                    <div class="camBtn white-text">
-                        <button class="check black-text">Check</button>
-                        <h4 class="verdict"></h4>
-                    </div>
+        <div class="col s12 m5">
+            <div class="card-panel teal">
+                <div class="camBtn white-text">
+                    <button class="check black-text">Check</button>
+                    <h4 class="verdict"></h4>
                 </div>
             </div>
-    <!--     <div class="title">
+        </div>
+        <!--     <div class="title">
             Camera
         </div> -->
-        <div class="camWindow cam">
+  <!--       <div class="demo-frame">
+            <div class="demo-container">
+                <video id="video" width="320" height="240" preload autoplay loop muted></video>
+                <canvas id="canvas" width="320" height="240"></canvas>
+            </div>
+        </div> -->
+            <div class="camWindow cam">
             <video autoplay></video>
         </div>
         <!--     <div class="camCapture cam">
      <canvas></canvas> -->
         <!-- </div> -->
-        <div>
-            <img src="" alt="">
-            <canvas></canvas>
-            
+         <div>
+            <img id="image" src="" alt="">
+            <canvas id="inputImage"></canvas>
+            <img id="test" src="">
         </div>
-        
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
     <script type="text/javascript" src="logic.js"></script>
