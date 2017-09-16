@@ -135,109 +135,115 @@ function gotMedia(mediaStream) {
 var snap = document.querySelector('.snap');
 const test = document.querySelector('#test');
 snap.onclick = function() {
-const image = document.querySelector('#image');
+    const image = document.querySelector('#image');
 
 // ...
-imageCapture.takePhoto()
-  .then(blob => {
-    
-    image.src = URL.createObjectURL(blob);
-    var y = '"' + image.src + '"';
-    var z = image.src.slice(5);
-    var t = '"' + z + '"';
-    console.log('is:', z);
-    console.log(y);
-    console.log('blob', blob);
-    // test.src = image.src;
-    $.post('/face', {'source': y, 'bacon': image.src}, function(data){
-      console.log(data.bacon);
-      test.src = data.bacon;
-    });
-// detectdetectdetectdetectdetectdetectdetectdetectdetectdetectdetectdetectdetectdetectdetectdetectdetectdetectdetect
-     $(function() {
-        var params = {
-            // Request parameters
-            "returnFaceId": "true",
-            "returnFaceLandmarks": "false",
-            "returnFaceAttributes": "age,gender",
-        };
-        var g = $.param(params);
-        console.log('g', g);
-      
-        $.ajax({
-            url: "https://westus.api.cognitive.microsoft.com/face/v1.0/detect?" + $.param(params),
-            // url: "https://api.projectoxford.ai/face/v1.0/detect",
-
-            beforeSend: function(xhrObj){
-                // Request headers
-                xhrObj.setRequestHeader("Content-Type","application/octet-stream");
-                xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key","apiKey");
-
-            },
-            type: "POST",         
-         
-            // Request body
-            data: blob,
-            processData: false
-            
+    imageCapture.takePhoto()
+      .then(blob => {
         
-        })
-        .done(function(data) {
-            console.log("success ");
-            var jsonData = JSON.stringify(data);
-            var parsedData = JSON.parse(jsonData);
-            var faceID1 = parsedData[0].faceId;            
-            console.log('faceID1', parsedData[0].faceId);
-            var newFace = '"' + parsedData[0].faceId + '"';
-            console.log('faceID2', newFace);
-                // verifyverifyverifyverifyverifyverifyverifyverifyverifyverifyverifyverifyverifyverifyverifyverifyverifyverify 
-                    $(function() {
-                        var params = {
-                            // Request parameters
-                        };
+        image.src = URL.createObjectURL(blob);
+        var y = '"' + image.src + '"';
+        var z = image.src.slice(5);
+        var t = '"' + z + '"';
+        // console.log('is:', z);
+        // console.log(y);
+        // console.log('blob', blob);
+        // test.src = image.src;
+        $.post('/face', {'source': y, 'bacon': image.src}, function(data){
+          // console.log(data.apiKey);
+          let apiKey = JSON.stringify(data);
+          let xyz = JSON.parse(apiKey);
+          // console.log('xyz', xyz);
+          // console.log(apiKey);
+          // test.src = data.source;
+          $(function() {
+            var params = {
+                // Request parameters
+                "returnFaceId": "true",
+                "returnFaceLandmarks": "false",
+                "returnFaceAttributes": "age,gender",
+            };
+            var g = $.param(params);
+            // console.log('g', g);
+          
+            $.ajax({
+                url: "https://westus.api.cognitive.microsoft.com/face/v1.0/detect?" + $.param(params),
+                // url: "https://api.projectoxford.ai/face/v1.0/detect",
 
-                        var dataObj = {
-                                    "faceId" : faceID1,
-                                    "personId": "60e003a7-5d98-477e-b686-c55ebceba0ba",
-                                    "personGroupId": "uaboot"
-                                  };
-                        $.ajax({
-                            url: "https://westus.api.cognitive.microsoft.com/face/v1.0/verify?" + $.param(params),
-                            beforeSend: function(xhrObj){
-                                // Request headers
-                                xhrObj.setRequestHeader("Content-Type","application/json");
-                                xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key","apiKey");
-                            },
-                            type: "POST",
-                            // Request body
-                            data : JSON.stringify(dataObj)
-                        })
-                        .done(function(data2) {
-                            console.log("success2", data2);
-                            if(data2.isIdentical){
-                              let percentMatch = data2.confidence * 100;
-                                 $('.verdict').text("Yes - " + percentMatch.toFixed(1) + " % match");
+                beforeSend: function(xhrObj){
+                    // Request headers
+                    xhrObj.setRequestHeader("Content-Type","application/octet-stream");
+                    xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", xyz.apiKey);
 
-                               }
-                              else {
-                                  $('.verdict').text("No");
-                              }
-                        })
-                        .fail(function(error2) {
-                            console.log("error2", error2);
+                },
+                type: "POST",         
+             
+                // Request body
+                data: blob,
+                processData: false
+                
+            
+            })
+            .done(function(data) {
+                console.log("success ");
+                var jsonData = JSON.stringify(data);
+                var parsedData = JSON.parse(jsonData);
+                var faceID1 = parsedData[0].faceId;            
+                console.log('faceID1', parsedData[0].faceId);
+                var newFace = '"' + parsedData[0].faceId + '"';
+                console.log('faceID2', newFace);
+                    // verifyverifyverifyverifyverifyverifyverifyverifyverifyverifyverifyverifyverifyverifyverifyverifyverifyverify 
+                        $(function() {
+                            var params = {
+                                // Request parameters
+                            };
+
+                            var dataObj = {
+                                        "faceId" : faceID1,
+                                        "personId": "60e003a7-5d98-477e-b686-c55ebceba0ba",
+                                        "personGroupId": "uaboot"
+                                      };
+                            $.ajax({
+                                url: "https://westus.api.cognitive.microsoft.com/face/v1.0/verify?" + $.param(params),
+                                beforeSend: function(xhrObj){
+                                    // Request headers
+                                    xhrObj.setRequestHeader("Content-Type","application/json");
+                                    xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", xyz.apiKey);
+                                },
+                                type: "POST",
+                                // Request body
+                                data : JSON.stringify(dataObj)
+                            })
+                            .done(function(data2) {
+                                console.log("success2", data2);
+                                if(data2.isIdentical){
+                                  let percentMatch = data2.confidence * 100;
+                                     $('.verdict').text("Yes - " + percentMatch.toFixed(1) + " % match");
+
+                                   }
+                                  else {
+                                      $('.verdict').text("No");
+                                  }
+                            })
+                            .fail(function(error2) {
+                                console.log("error2", error2);
+                            });
                         });
-                    });
 
                 // verifyverifyverifyverifyverifyverifyverifyverifyverifyverifyverifyverifyverifyverifyverifyverifyverifyverify 
 
 
-        })
-        .fail(function(error) {
-            alert("error");
-            console.log(error.responseText);
-            // console.log(error.error());
+            })
+            .fail(function(error) {
+                alert("error");
+                console.log(error.responseText);
+                // console.log(error.error());
+            });
         });
-    });
+
+        });
+// detectdetectdetectdetectdetectdetectdetectdetectdetectdetectdetectdetectdetectdetectdetectdetectdetectdetectdetect
+         
 //detectdetectdetectdetectdetectdetectdetectdetectdetectdetectdetectdetectdetectdetectdetectdetectdetectdetectdetect
  //FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF    
     // $(function() {
@@ -252,7 +258,7 @@ imageCapture.takePhoto()
     //         beforeSend: function(xhrObj){
     //             // Request headers
     //             xhrObj.setRequestHeader("Content-Type","application/octet-stream");
-    //             xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key","apiKey");
+    //             xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key","xyz.apiKey");
     //         },
     //         type: "POST",
     //         // Request body
@@ -277,8 +283,8 @@ imageCapture.takePhoto()
 
     // image.onload = () => { URL.revokeObjectURL(this.src); }
 //     //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-  })
-  .catch(error => console.error('takePhoto() error:', error));
+      })
+      .catch(error => console.error('takePhoto() error:', error));
 }
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // const canvas = document.querySelector('canvas');

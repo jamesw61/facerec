@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 var oxford = require('project-oxford');
 var keys = require('../config/keys');
+var configVar = process.env.apiKey;
 
 router.post("/face", function(req, res) {
     // burger.insertOne(["burger_name", "devoured"], [req.body.name, false], function() {
@@ -9,8 +10,11 @@ router.post("/face", function(req, res) {
     // res.redirect("/");
     // });
     let y = req.body;
-    console.log(y.source);
-    res.send(y);
+    // console.log(y.source);
+    let z = {        
+        apiKey: configVar
+    }
+    res.send(z);
    
                     // var client = new oxford.Client(keys.azureKey);
                     // client.face.detect({
