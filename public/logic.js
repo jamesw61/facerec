@@ -150,7 +150,7 @@ snap.onclick = function() {
         // console.log('blob', blob);
         // test.src = image.src;
         $.post('/face', {'source': y, 'bacon': image.src}, function(data){
-          // console.log(data.apiKey);
+          console.log('d', data.apiKey);
           let apiKey = JSON.stringify(data);
           let xyz = JSON.parse(apiKey);
           // console.log('xyz', xyz);
