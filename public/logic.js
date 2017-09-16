@@ -150,9 +150,10 @@ snap.onclick = function() {
         // console.log('blob', blob);
         // test.src = image.src;
         $.post('/face', {'source': y, 'bacon': image.src}, function(data){
-          console.log('d', data.apiKey);
           let apiKey = JSON.stringify(data);
           let xyz = JSON.parse(apiKey);
+          console.log('xyz', xyz.apiKey);
+
           // console.log('xyz', xyz);
           // console.log(apiKey);
           // test.src = data.source;
@@ -173,7 +174,7 @@ snap.onclick = function() {
                 beforeSend: function(xhrObj){
                     // Request headers
                     xhrObj.setRequestHeader("Content-Type","application/octet-stream");
-                    xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", xyz.apiKey);
+                    xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", data.apiKey);
 
                 },
                 type: "POST",         
@@ -208,7 +209,7 @@ snap.onclick = function() {
                                 beforeSend: function(xhrObj){
                                     // Request headers
                                     xhrObj.setRequestHeader("Content-Type","application/json");
-                                    xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", xyz.apiKey);
+                                    xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", data.apiKey);
                                 },
                                 type: "POST",
                                 // Request body
