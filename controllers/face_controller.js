@@ -14,7 +14,7 @@ router.post("/face", function(req, res) {
     let z = {        
         apiKey: configVar
     }
-    res.send(z);
+    res.send(configVar);
    
                     // var client = new oxford.Client(keys.azureKey);
                     // client.face.detect({
