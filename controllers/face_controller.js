@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
 var oxford = require('project-oxford');
-var keys = require('../config/keys');
+// var keys = require('../config/keys');
 var configVar = process.env.apiKey;
 
 router.post("/face", function(req, res) {
