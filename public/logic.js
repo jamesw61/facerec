@@ -153,6 +153,8 @@ snap.onclick = function() {
           let apiKey = JSON.stringify(data);
           let xyz = JSON.parse(apiKey);
           console.log('xyz', xyz.apiKey);
+          console.log('apikey', apiKey.apiKey);
+          console.log('data', data.apiKey);
 
           // console.log('xyz', xyz);
           // console.log(apiKey);
