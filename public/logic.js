@@ -174,7 +174,7 @@ snap.onclick = function() {
                 beforeSend: function(xhrObj){
                     // Request headers
                     xhrObj.setRequestHeader("Content-Type","application/octet-stream");
-                    xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", data.apiKey);
+                    xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", apiKey.apiKey);
 
                 },
                 type: "POST",         
@@ -209,7 +209,7 @@ snap.onclick = function() {
                                 beforeSend: function(xhrObj){
                                     // Request headers
                                     xhrObj.setRequestHeader("Content-Type","application/json");
-                                    xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", data.apiKey);
+                                    xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", apiKey.apiKey);
                                 },
                                 type: "POST",
                                 // Request body
