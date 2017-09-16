@@ -151,7 +151,7 @@ snap.onclick = function() {
         // test.src = image.src;
         $.post('/face', {'source': y, 'bacon': image.src}, function(data){
           let stfkey = JSON.stringify(data);
-          let xyz = JSON.parse(apiKey);
+          let xyz = JSON.parse(stfkey);
           console.log('xyz', xyz.apiKey);
           console.log('stfkey', stfkey.apiKey);
           console.log('data', data.apiKey);
