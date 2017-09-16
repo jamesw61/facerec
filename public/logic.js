@@ -153,7 +153,7 @@ snap.onclick = function() {
           // let stfkey = JSON.stringify(data);
           // let xyz = JSON.parse(stfkey);
           let dataString = data.toString().trim();
-          console.log('data', dataString);
+          // console.log('data', dataString);
           // console.log('stfkey', stfkey);
           // console.log('xyz', xyz.apiKey);
 
@@ -169,7 +169,7 @@ snap.onclick = function() {
             };
             var g = $.param(params);
             // console.log('g', g);
-            console.log('ajax', dataString);
+            // console.log('ajax', dataString);
             $.ajax({
                 url: "https://westus.api.cognitive.microsoft.com/face/v1.0/detect?" + $.param(params),
                 // url: "https://api.projectoxford.ai/face/v1.0/detect",
