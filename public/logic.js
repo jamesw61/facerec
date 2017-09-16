@@ -152,7 +152,8 @@ snap.onclick = function() {
         $.post('/face', {'source': y, 'bacon': image.src}, function(data){
           // let stfkey = JSON.stringify(data);
           // let xyz = JSON.parse(stfkey);
-          console.log('data', data);
+          let dataString = data.toString();
+          console.log('data', dataString);
           // console.log('stfkey', stfkey);
           // console.log('xyz', xyz.apiKey);
 
@@ -176,7 +177,7 @@ snap.onclick = function() {
                 beforeSend: function(xhrObj){
                     // Request headers
                     xhrObj.setRequestHeader("Content-Type","application/octet-stream");
-                    xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", data);
+                    xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", dataString);
 
                 },
                 type: "POST",         
@@ -211,7 +212,7 @@ snap.onclick = function() {
                                 beforeSend: function(xhrObj){
                                     // Request headers
                                     xhrObj.setRequestHeader("Content-Type","application/json");
-                                    xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", data);
+                                    xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", dataString);
                                 },
                                 type: "POST",
                                 // Request body
@@ -238,8 +239,9 @@ snap.onclick = function() {
 
             })
             .fail(function(error) {
-                alert("error");
+                // alert("error");
                 console.log(error.responseText);
+                console.log(error);
                 // console.log(error.error());
             });
         });
